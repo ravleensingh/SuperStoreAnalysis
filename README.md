@@ -1,173 +1,100 @@
-# SuperStore Retail Performance & Profitability Analysis
+# SuperStore Retail Performance and Profitability Analysis
 
-## Project Overview
+This project analyzes the SuperStore retail dataset across Google Sheets, Looker Studio, and Tableau-focused Python notebooks. The original dashboard work in Google Sheets and Looker Studio is preserved as-is, and a separate Tableau workflow has been added inside `Tableau_Analysis/` so the raw-to-dashboard process can be reproduced cleanly in Python.
 
-This project conducts a comprehensive data visualization and analysis of **9,993 transactions** from a U.S. retail chain spanning **2014 to 2017**. The objective is to identify hidden drivers of profit leakage, quantify the impact of discount strategies, and surface actionable insights across product categories, customer segments, and geographic regions.
+## Project Scope
 
-The business records an overall profit margin of **12.47%** on total revenue of **$2,296,919.70**, yet **18.71% of all transactions (1,870 records)** are loss-making — the majority of which are directly attributable to aggressive discounting above 20%.
+- Preserve the existing Google Sheets dashboard, Looker Studio dashboard, and pivot-table work
+- Rebuild the dataset from raw data for Tableau Public using notebooks
+- Perform cleaning, EDA, and statistical analysis from scratch
+- Export a professional Tableau-ready dataset with only the approved 37 columns
 
-> **Live Resources**
-> - Kaggle Dataset: [Superstore Dataset — Kaggle](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final)
-> - Google Sheets (Pivot Tables & Analysis): [Google Sheets — Analysis & Dashboard](https://docs.google.com/spreadsheets/d/1uYMA31gywDBovLxOGKkN01vJsgJn0UiOrBL0BGHEHfw/edit?usp=sharing)
-> - Looker Studio Dashboard (Live): [Looker Studio — Interactive Dashboard](https://datastudio.google.com/reporting/a8f98465-e7fb-4850-a190-e4742323a383)
+## Project Assets
 
----
-
-## Repository Structure
-
-```
-SuperStore_Analysis/
-│
-├── DataSet/
-│   ├── raw/
-│   │   ├── raw.csv                        # Original Kaggle dataset (9,994 records, 21 columns)
-│   │   └── raw.xlsx
-│   └── cleaned/
-│       ├── cleaned.csv                    # Engineered dataset (9,993 records, 37 columns)
-│       └── cleaned.xlsx
-│
-├── Pivot_Tables/
-│   ├── exploring_PivotTables/
-│   │   ├── explored_PivotTables.csv       # Exploratory pivot analysis
-│   │   └── explored_PivotTables.xlsx
-│   └── major_PivotTables/
-│       ├── Major_PivotTables.csv          # Core analytical pivot tables
-│       └── Major_PivotTables.xlsx
-│
-├── Dashboard/
-│   ├── googlesheets_Dashboard.pdf         # Google Sheets dashboard export
-│   └── lookerstudio_Dashboard.pdf         # Looker Studio dashboard export
-│
-└── README.md
-```
-
----
-
-## Dataset Details
-
-### Raw Dataset
-| Attribute | Value |
+| Area | Description |
 |---|---|
-| Source | Kaggle — Superstore Retail Sales Dataset |
-| Records | 9,994 transactions |
-| Columns | 21 |
-| Time Period | 2014 – 2017 |
-| Geography | 49 U.S. States |
+| `DataSet/raw/` | Original raw SuperStore source files |
+| `DataSet/cleaned/` | Existing Google Sheets cleaned benchmark files |
+| `Pivot_Tables/` | Google Sheets pivot-table exports |
+| `Dashboard/` | PDF exports of the Google Sheets and Looker Studio dashboards |
+| `Tableau_Analysis/` | Isolated Python, notebook, and Tableau workflow |
 
-**Original Columns:** `Row ID`, `Order ID`, `Order Date`, `Ship Date`, `Ship Mode`, `Customer ID`, `Customer Name`, `Segment`, `Country`, `City`, `State`, `Postal Code`, `Region`, `Product ID`, `Category`, `Sub-Category`, `Product Name`, `Sales`, `Quantity`, `Discount`, `Profit`
+## Tableau Workflow Summary
 
-### Cleaned Dataset
-| Attribute | Value |
-|---|---|
-| Records | 9,993 transactions |
-| Columns | 37 (21 original + 16 engineered) |
+The Tableau workflow is fully contained inside `Tableau_Analysis/` and does not interfere with the existing dashboard files.
 
-**16 Engineered Columns Added:**
+Published Tableau Public dashboard:
+`https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17777857884460/Overview?publish=yes`
 
-| Engineered Column | Description |
-|---|---|
-| `Transaction Id (PK)` | Unique primary key per transaction |
-| `Year` | Extracted order year |
-| `Month` | Extracted order month |
-| `Quarter` | Fiscal quarter (Q1–Q4) |
-| `Shipping Delay` | Days between order date and ship date |
-| `Shipping Speed` | Categorical speed classification |
-| `Customer Type` | Customer loyalty classification |
-| `Order-Size` | Order size tier (Small / Medium / Large) |
-| `Sales Per Unit` | Sales ÷ Quantity |
-| `Profit Margin` | Profit ÷ Sales |
-| `Loss Severity` | Severity classification of loss transactions |
-| `Loss Flag` | Binary flag: Profit / Loss |
-| `Order-Level Total Sales` | Aggregated sales grouped by Order ID |
-| `Customer Purchase Frequency` | Transaction count per Customer ID |
-| `Total Sales per Customer` | Cumulative sales per customer |
-| `Discount Amount` | Absolute discount value (Sales × Discount Rate) |
-
----
-
-## Key Metrics
+### Final Tableau Dataset
 
 | Metric | Value |
 |---|---|
-| Total Revenue | $2,296,919.70 |
-| Total Profit | $286,409.85 |
-| Overall Profit Margin | 12.47% |
-| Loss-Making Transactions | 1,870 (18.71%) |
-| Transactions with Discount > 20% | 1,392 |
-| Loss Transactions with Discount > 20% | 1,347 (96.8% of all losses) |
-| Unique Customers | 793 |
-| Unique Products | 1,862 |
-| Unique Orders | 5,009 |
+| Final rows | `9,993` |
+| Final columns | `37` |
+| Total Sales | `$2,296,919.28` |
+| Total Profit | `$286,408.60` |
+| Overall Profit Margin | `12.47%` |
+| Loss Transactions | `1,870` |
+| High-Discount Transactions (`> 20%`) | `1,392` |
+| Unique Orders | `5,009` |
+| Unique Customers | `793` |
+| Unique Products | `1,862` |
 
----
+### Final Tableau Schema
 
-## Category Performance
+The final dataset contains only these fields:
 
-| Category | Total Sales | Total Profit | Profit Margin |
-|---|---|---|---|
-| Technology | $836,154.10 | $145,455.66 | 17.40% |
-| Office Supplies | $719,046.99 | $122,490.88 | 17.04% |
-| Furniture | $741,718.61 | $18,463.31 | 2.49% |
+`Row ID`, `Transaction Id (PK)`, `Order ID`, `Order Date`, `Year`, `Month`, `Quarter`, `Ship Date`, `Shipping Delay`, `Shipping Speed`, `Ship Mode`, `Customer ID`, `Customer Name`, `Customer Type`, `Segment`, `Country`, `City`, `State`, `Postal Code`, `Region`, `Product ID`, `Category`, `Sub-Category`, `Product Name`, `Sales`, `Quantity`, `Order-Size`, `Sales Per Unit`, `Discount`, `Profit`, `Profit Margin`, `Loss Severity`, `Loss Flag`, `Order-Level Total Sales (Grouped by Order ID C)`, `Customer Purchase Frequency (Customer ID = L)`, `Total sales per customer`, `Discount Amount (Sales × Discount)`
 
-> Furniture is the primary profit leakage category, generating only a **2.49% margin** despite being the second-highest revenue contributor.
+## Key Insights
 
----
+- `TECHNOLOGY` is the strongest category for both sales and profit.
+- `FURNITURE` is the clearest margin leakage category.
+- `Tables` and `Bookcases` are the most problematic sub-categories.
+- `West` leads regional profit, while `Central` has the weakest profit margin.
+- The discount threshold above `20%` is strongly linked to losses.
 
-## Regional Performance
+## Repository Structure
 
-| Region | Total Sales | Total Profit |
-|---|---|---|
-| West | $725,457.93 | $108,418.79 |
-| East | $678,499.99 | $91,534.90 |
-| South | $391,721.90 | $46,749.71 |
-| Central | $501,239.88 | $39,706.45 |
+```text
+SuperStore_Analysis/
+|-- Dashboard/
+|   |-- googlesheets_Dashboard.pdf
+|   `-- lookerstudio_Dashboard.pdf
+|-- DataSet/
+|   |-- cleaned/
+|   `-- raw/
+|-- Pivot_Tables/
+|   |-- exploring_PivotTables/
+|   `-- major_PivotTables/
+|-- Tableau_Analysis/
+|   |-- data/
+|   |-- docs/
+|   |-- notebooks/
+|   |-- reports/
+|   |-- scripts/
+|   `-- tableau/
+`-- README.md
+```
 
----
+## Tableau Workflow Files
 
-## Data Dimensions
+- `Tableau_Analysis/README.md`
+- `Tableau_Analysis/notebooks/01_extraction.ipynb` to `05_final_load_prep.ipynb`
+- `Tableau_Analysis/scripts/superstore_pipeline.py`
+- `Tableau_Analysis/docs/data_dictionary.md`
+- `Tableau_Analysis/reports/project_report.md`
+- `Tableau_Analysis/tableau/dashboard_links.md`
+- `Tableau_Analysis/tableau/screenshots/`
+- `Tableau_Analysis/tableau/workbook/Book1.twb`
 
-| Dimension | Values |
-|---|---|
-| Categories | Furniture, Office Supplies, Technology |
-| Sub-Categories | Accessories, Appliances, Art, Binders, Bookcases, Chairs, Copiers, Envelopes, Fasteners, Furnishings, Labels, Machines, Paper, Phones, Storage, Supplies, Tables |
-| Customer Segments | Consumer, Corporate, Home Office |
-| Shipping Modes | Standard Class, Second Class, First Class, Same Day |
-| Regions | Central, East, South, West |
-| States Covered | 49 |
+## Run Order
 
----
+1. `01_extraction.ipynb`
+2. `02_cleaning.ipynb`
+3. `03_eda.ipynb`
+4. `04_statistical_analysis.ipynb`
+5. `05_final_load_prep.ipynb`
 
-## Pivot Table Analysis
-
-### Exploring Pivot Tables
-Initial exploratory analysis covering sales distribution by shipping speed, category-level margin trends, and discount-to-loss correlation patterns.
-
-### Major Pivot Tables
-Core decision-support analysis structured across three dimensions:
-
-1. **Time × Region** — Year, Quarter, Month, and Region breakdown of Sales, Profit, Average Profit, Order Count, Quantity, and Average Discount
-2. **Category × Sub-Category × Segment × Ship Mode** — Profitability and discount analysis across product hierarchy and fulfillment channels
-3. **Loss Severity × Category × Sub-Category** — Isolation of high-loss and moderate-loss transactions with associated discount rates and sales volumes
-
----
-
-## Dashboard
-
-Two dashboard exports are available in the `Dashboard/` directory:
-
-| File | Description |
-|---|---|
-| `googlesheets_Dashboard.pdf` | Static export of the Google Sheets interactive dashboard |
-| `lookerstudio_Dashboard.pdf` | Static export of the Looker Studio live dashboard |
-
-Live interactive versions are accessible via the links at the top of this document.
-
----
-
-## Tools & Technologies
-
-| Tool | Purpose |
-|---|---|
-| Google Sheets | Data cleaning, feature engineering, pivot table analysis, dashboard |
-| Looker Studio | Interactive live dashboard and data visualization |
-| CSV / XLSX | Data storage and cross-tool compatibility |
+All five notebooks have already been executed and saved with visible outputs.
