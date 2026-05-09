@@ -1,140 +1,204 @@
-# Project Report: SuperStore Tableau Workflow
+# Project Report: SuperStore Analysis Dashboard Portfolio
 
 ## 1. Executive Summary
 
-This workflow rebuilds the SuperStore dashboard dataset directly from the raw source file and prepares a clean, professional, Tableau-ready export. The project preserves the existing Google Sheets and Looker Studio work while adding a separate Python-and-Jupyter pipeline for reproducible cleaning, exploratory analysis, statistical testing, and Tableau Public dashboard development.
+This project analyzes the SuperStore retail dataset across Google Sheets, Looker Studio, and Tableau to produce a complete business intelligence portfolio. The work began with raw transaction data from Kaggle, continued through cleaning and feature engineering in Google Sheets, and concluded with executive and analytical dashboards published through Looker Studio and Tableau Public.
 
-The final Tableau dataset contains **9,993 rows** and **37 columns**, with no extra helper fields stored in the CSV. The business remains profitable overall, generating **$2,296,919.28** in sales and **$286,408.60** in profit, but the analysis confirms that discount-heavy transactions are the dominant driver of profit leakage.
+The final business dataset contains 9,993 rows and 37 business-facing columns after removal of one duplicated business row. Across the final cleaned dataset, the business generated $2,296,919.70 in sales and $286,409.85 in profit, with an overall profit margin of 12.47%. The core business issue is discount-driven profit leakage, especially within Furniture and the Central region.
 
-## 2. Project Objectives
+## 2. Project Objective
 
-- Rebuild the dataset from the raw SuperStore source using Python notebooks.
-- Keep the Tableau workflow isolated from the existing dashboard assets.
-- Export a final CSV containing only the approved 37 columns.
-- Produce notebook outputs, EDA, and statistical evidence that directly support a multi-page Tableau Public dashboard.
+The objective of the project was to move beyond simple sales reporting and answer four business questions:
 
-## 3. Data and Cleaning Summary
+1. Which categories, regions, and segments drive profitable growth?
+2. Where is profit leaking despite strong revenue?
+3. How strongly are discounts associated with loss-making transactions?
+4. How can dashboard design support both executive review and deeper operational analysis?
+
+## 3. Data Foundation
+
+### Source and Scope
 
 | Item | Value |
 |---|---|
-| Raw source rows | 9,994 |
-| Final rows | 9,993 |
-| Duplicate business rows removed | 1 |
+| Source | Kaggle SuperStore dataset |
+| Raw rows | 9,994 |
+| Final cleaned rows | 9,993 |
 | Raw columns | 21 |
 | Final columns | 37 |
-| Source time period | 2014 to 2017 |
+| Time period | 2014 to 2017 |
+| States covered | 49 |
 | Unique orders | 5,009 |
 | Unique customers | 793 |
 | Unique products | 1,862 |
 
-### Key Cleaning Decisions
+### Data Quality and Cleaning
 
-1. Removed one duplicated business row after checking all fields except `Row ID`.
-2. Standardized the final Tableau export to the exact approved 37-column schema.
-3. Kept notebook-only helper calculations out of the saved CSV.
-4. Derived customer, loss, order-size, and shipping classifications in a documented way so the process stays reproducible.
+- One duplicate business record was identified and removed: `Row ID = 3407`.
+- The final schema preserved the original 21 fields and added 16 engineered analysis fields.
+- Key engineered fields included `Shipping Delay`, `Shipping Speed`, `Customer Type`, `Order-Size`, `Sales Per Unit`, `Profit Margin`, `Loss Severity`, `Loss Flag`, customer-level totals, and order-level totals.
+- Google Sheets served as the master business dataset for the project.
+- Tableau received a reproducible export of the same 37-column structure through a Python pipeline.
 
-## 4. Core KPI Snapshot
+## 4. Deliverables Across Three Platforms
+
+| Platform | Purpose | Outcome |
+|---|---|---|
+| Google Sheets | Cleaning, engineered columns, pivot-table exploration, original dashboard layer | Created the master cleaned dataset and pivot-based business views |
+| Looker Studio | Executive KPI dashboard | Delivered a polished, interactive summary for fast decision review |
+| Tableau Public | Multi-page analytical storytelling dashboard | Delivered a six-page drill-down dashboard for deeper business analysis |
+
+### Tableau Page Structure
+
+1. `Overview`
+2. `Sales Analysis`
+3. `Profit and Margin`
+4. `Loss and Discount Risk`
+5. `Customer Analysis`
+6. `Shipping and Ops`
+
+This structure allowed the final dashboard portfolio to serve both summary-level and investigative use cases.
+
+## 5. Validated KPI Baseline
+
+The following KPI baseline is taken from the final Google Sheets cleaned dataset:
 
 | KPI | Value |
 |---|---|
-| Total Sales | `$2,296,919.28` |
-| Total Profit | `$286,408.60` |
-| Overall Profit Margin | `12.47%` |
-| Total Quantity | `37,871` |
-| Loss Transactions | `1,870` |
-| Loss Transaction Share | `18.71%` |
-| Average Discount | `15.62%` |
-| Transactions with Discount > 20% | `1,392` |
-| Loss Transactions with Discount > 20% | `1,347` |
+| Total Sales | $2,296,919.70 |
+| Total Profit | $286,409.85 |
+| Profit Margin | 12.47% |
+| Total Quantity | 37,871 |
+| Loss Transactions | 1,870 |
+| Loss Share | 18.71% |
+| High-Discount Transactions (`> 20%`) | 1,392 |
+| High-Discount Loss Transactions | 1,347 |
+| Average Discount | 15.62% |
 
-## 5. Major Analytical Findings
+### Tableau Export Note
 
-### 5.1 Category Performance
+The Tableau-ready dataset rounds row-level `Sales` and `Profit` values to two decimals, so its totals are slightly different:
 
-| Category | Sales | Profit | Profit Margin |
+- Tableau Sales: $2,296,919.28
+- Tableau Profit: $286,408.60
+
+This is a cent-level export difference only and does not change the project conclusions.
+
+## 6. Findings
+
+### 6.1 Category Performance
+
+| Category | Sales | Profit | Margin |
 |---|---|---|---|
-| `TECHNOLOGY` | `$836,154.02` | `$145,455.44` | `17.40%` |
-| `FURNITURE` | `$741,718.36` | `$18,463.16` | `2.49%` |
-| `OFFICE SUPPLIES` | `$719,046.90` | `$122,490.00` | `17.04%` |
+| TECHNOLOGY | $836,154.10 | $145,455.66 | 17.40% |
+| OFFICE SUPPLIES | $719,046.99 | $122,490.88 | 17.04% |
+| FURNITURE | $741,718.61 | $18,463.31 | 2.49% |
 
-`FURNITURE` is the most important problem area. It contributes major revenue but delivers a weak margin compared with the other two categories.
+Interpretation:
 
-### 5.2 Sub-Category Risk
+- `TECHNOLOGY` is the strongest growth and profit category.
+- `OFFICE SUPPLIES` is stable and efficient.
+- `FURNITURE` underperforms badly on margin and is the primary category-level concern.
 
-The strongest profit sub-categories are:
+### 6.2 Sub-Category Profitability
+
+Strongest profit contributors:
 
 - `Copiers`
 - `Phones`
 - `Accessories`
 - `Paper`
 
-The weakest sub-categories are:
+Weakest profit contributors:
 
 - `Tables`
 - `Bookcases`
 - `Supplies`
 
-`Tables` is the clearest structural loss-maker in the product mix.
+Interpretation:
 
-### 5.3 Regional Performance
+- `Tables` is the clearest structural loss-maker.
+- `Bookcases` also underperform despite meaningful sales volume.
+- These sub-categories explain much of the category-level weakness inside Furniture.
 
-| Region | Sales | Profit | Profit Margin |
-|---|---|---|---|
-| `West` | `$725,457.76` | `$108,418.31` | `14.94%` |
-| `East` | `$678,499.93` | `$91,534.56` | `13.49%` |
-| `Central` | `$501,239.76` | `$39,706.24` | `7.92%` |
-| `South` | `$391,721.83` | `$46,749.49` | `11.93%` |
+### 6.3 Regional Performance
 
-`Central` deserves special attention because its margin trails every other region.
+| Region | Sales | Profit | Margin | Average Discount |
+|---|---|---|---|---|
+| West | $725,457.93 | $108,418.79 | 14.94% | 10.93% |
+| East | $678,499.99 | $91,534.90 | 13.49% | 14.53% |
+| South | $391,721.90 | $46,749.71 | 11.93% | 14.73% |
+| Central | $501,239.88 | $39,706.45 | 7.92% | 24.04% |
 
-### 5.4 Time Trends
+Interpretation:
 
-- The strongest sales quarter is `2017 Q4`.
-- Late-year months drive the highest revenue, especially `November` and `December`.
-- The quarterly trend supports a strong time-series section on the Tableau overview page.
+- `West` is the best-performing region.
+- `Central` combines high discounting with weak profit conversion and is the most important regional risk area.
 
-### 5.5 Discount Risk
+### 6.4 Time Trends
 
-The discount story is the most important operational insight in the project:
+- `2017 Q4` is the strongest sales quarter.
+- `2016 Q4` and `2017 Q4` are especially strong for profit.
+- Sales accelerate late in the calendar year, especially in `November` and `December`.
 
-- Overall average discount is `15.62%`
-- `1,392` transactions have discounts above `20%`
-- `1,347` of those high-discount transactions are loss-making
-- Every `Deep Discount` transaction in the analysis is a loss
-- `High Discount` transactions have a `90.20%` loss rate
+Interpretation:
 
-## 6. Statistical Validation
+- The business has clear seasonality.
+- End-of-year planning, inventory positioning, and discount control matter disproportionately.
 
-The statistical notebook confirms that the visual patterns are meaningful:
+### 6.5 Discount and Loss Risk
 
-| Test | Result |
-|---|---|
-| Pearson correlation: Discount Rate vs Profit Margin | `r = -0.8645`, `p < 0.001` |
-| Welch t-test: Profit for Discount `> 20%` vs `<= 20%` | Strong significant difference, `p < 0.001` |
-| ANOVA: Profit differences across categories | Significant, `p < 0.001` |
-| Chi-square: Discount Band vs Loss Flag | Strong dependence, `p < 0.001` |
+This is the most important business story in the project:
 
-These results justify giving discount-risk analysis a dedicated Tableau page instead of treating it as a minor supporting chart.
+- 1,392 transactions have discounts above 20%.
+- 1,347 of those transactions are loss-making.
+- 96.77% of high-discount transactions are losses.
+- 72.03% of all loss transactions happen above the 20% discount threshold.
+- Deep-discount transactions are entirely loss-making in the Tableau risk view.
 
-## 7. Dashboard Implications
+Interpretation:
 
-The Tableau dashboard should mirror the strengths of the existing Looker Studio dashboard while using Tableau for richer drill-downs and interactions. The analysis strongly supports a six-page structure:
+- Discounting above 20% is not a marginal issue. It is a primary driver of lost profit.
+- The risk is especially visible in weak sub-categories such as `Tables`, `Bookcases`, and selected Office Supplies lines.
 
-1. Overview
-2. Sales Analysis
-3. Profit and Margin
-4. Loss and Discount Risk
-5. Customer Analysis
-6. Shipping and Operations
+### 6.6 Customer and Operations Findings
+
+- `Consumer` is the largest sales segment, contributing 50.56% of revenue.
+- `Home Office` has the highest profit margin at 14.05%.
+- `Standard Class` accounts for 59.71% of transaction rows.
+- `Normal` shipping speed accounts for 61.49% of transactions.
+
+Interpretation:
+
+- Segment and fulfillment views are useful because profitability is not identical to sales volume.
+- Operational dashboards benefit from separating order mix, shipping speed, and loss transactions instead of treating them as a single logistics measure.
+
+## 7. Dashboard Design Implications
+
+The final dashboard portfolio reflects the project findings in three layers:
+
+- Google Sheets keeps the analytical foundation transparent by preserving formulas, engineered fields, and pivot logic.
+- Looker Studio provides the clean executive layer with KPI cards and essential trend comparisons.
+- Tableau Public carries the deeper story through drill-down pages focused on sales, profit, risk, customers, and shipping.
+
+This three-tool structure is appropriate for a cumulative capstone because it shows technical range, analytical rigor, and communication design across multiple BI environments.
 
 ## 8. Recommendations
 
-1. Reduce deep discounting on structurally weak product areas, especially `Tables` and `Bookcases`.
-2. Review pricing and sales strategy in the `Central` region, where margin performance is weakest.
-3. Use discounting more selectively, because the `> 20%` threshold is strongly associated with losses.
-4. Highlight profitable category and regional combinations in Tableau so the dashboard balances risk insight with growth opportunity.
+1. Tighten discount policy above the 20% threshold, especially in low-margin categories and regions.
+2. Review `Furniture`, with specific attention to `Tables` and `Bookcases`.
+3. Audit `Central` region pricing and promotional behavior because high discounts are not converting into strong profit.
+4. Preserve profitable growth levers in `Technology`, `West`, and high-profit sub-categories such as `Copiers`, `Phones`, and `Accessories`.
+5. Use the Tableau risk pages and Looker executive page together: one for escalation, one for day-to-day monitoring.
 
-## 9. Conclusion
+## 9. Final Project Status
 
-The SuperStore Tableau workflow is now reproducible, streamlined, and aligned with the final dashboard requirement. The notebooks run end to end, the final Tableau dataset contains only the approved 37 columns, and the project documentation is synchronized with the cleaned data and dashboard design direction.
+The project is complete from a dashboard-development perspective. The remaining work was documentation alignment, and that is now addressed through:
+
+- a consolidated main README,
+- a clearer Tableau workflow README,
+- a cross-platform dashboard links file,
+- an updated project report,
+- and a synchronized data dictionary.
+
+The repository now communicates the dataset, workflow, dashboard assets, links, and final business insights in a single professional narrative.
