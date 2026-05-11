@@ -7,14 +7,14 @@ This file centralizes the live links and local dashboard assets for the full `Su
 - Kaggle Dataset: [Superstore Dataset - Kaggle](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final)
 - Google Sheets Workbook: [Google Sheets - Cleaning, Pivot Tables, and Dashboard](https://docs.google.com/spreadsheets/d/1uYMA31gywDBovLxOGKkN01vJsgJn0UiOrBL0BGHEHfw/edit?usp=sharing)
 - Looker Studio Dashboard: [Looker Studio - Interactive Dashboard](https://datastudio.google.com/reporting/a8f98465-e7fb-4850-a190-e4742323a383)
-- Tableau Public Dashboard: [Tableau Public - Interactive Dashboard](https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17777857884460/Overview?publish=yes)
+- Tableau Public Dashboard: [Tableau Public - Interactive Dashboard](https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17785071275660/Overview)
 
 ## Local Dashboard Assets
 
 | Asset | Path |
 |---|---|
-| Google Sheets dashboard export | [../../Dashboard/googlesheets_Dashboard.pdf](../../Dashboard/googlesheets_Dashboard.pdf) |
-| Looker Studio dashboard export | [../../Dashboard/lookerstudio_Dashboard.pdf](../../Dashboard/lookerstudio_Dashboard.pdf) |
+| Google Sheets dashboard export | [../../dashboard/googlesheets_Dashboard.pdf](../../dashboard/googlesheets_Dashboard.pdf) |
+| Looker Studio dashboard export | [../../dashboard/lookerstudio_Dashboard.pdf](../../dashboard/lookerstudio_Dashboard.pdf) |
 | Tableau workbook | [workbook/Book1.twb](./workbook/Book1.twb) |
 
 ## Tableau Screenshot Pages

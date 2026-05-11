@@ -77,9 +77,9 @@ def resolve_project_paths(project_root: Path | None = None) -> ProjectPaths:
 
     return ProjectPaths(
         project_root=root,
-        source_raw_csv_path=superstore_root / "DataSet" / "raw" / "raw.csv",
-        source_raw_excel_path=superstore_root / "DataSet" / "raw" / "raw.xlsx",
-        source_cleaned_path=superstore_root / "DataSet" / "cleaned" / "cleaned.csv",
+        source_raw_csv_path=superstore_root / "data" / "raw" / "raw.csv",
+        source_raw_excel_path=superstore_root / "data" / "raw" / "raw.xlsx",
+        source_cleaned_path=superstore_root / "data" / "processed" / "cleaned.csv",
         raw_snapshot_path=root / "data" / "raw" / "superstore_raw_dataset.csv",
         cleaned_output_path=root / "data" / "processed" / "superstore_cleaned_dataset.csv",
         tableau_output_path=root

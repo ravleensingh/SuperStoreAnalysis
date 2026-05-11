@@ -7,7 +7,7 @@ This guide summarizes the final dashboard assets for the full `SuperStore_Analys
 - Kaggle Dataset: [Superstore Dataset - Kaggle](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final)
 - Google Sheets Workbook: [Google Sheets - Cleaning, Pivot Tables, and Dashboard](https://docs.google.com/spreadsheets/d/1uYMA31gywDBovLxOGKkN01vJsgJn0UiOrBL0BGHEHfw/edit?usp=sharing)
 - Looker Studio Dashboard: [Looker Studio - Interactive Dashboard](https://datastudio.google.com/reporting/a8f98465-e7fb-4850-a190-e4742323a383)
-- Tableau Public Dashboard: [Tableau Public - Interactive Dashboard](https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17777857884460/Overview?publish=yes)
+- Tableau Public Dashboard: [Tableau Public - Interactive Dashboard](https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17785071275660/Overview)
 
 ## 2. Local Dashboard Assets
 

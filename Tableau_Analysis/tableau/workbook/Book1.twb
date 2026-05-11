@@ -46,7 +46,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='superstore_tableau_ready_dataset' name='textscan.1wn0gnp03nnq3v18fp95216mztqy'>
-            <connection class='textscan' directory='/Users/ravleensingh/Documents/Capstone/DVA_Capstone/SuperStore_Analysis/Tableau_Analysis/data/processed' filename='superstore_tableau_ready_dataset.csv' password='' server='' />
+            <connection class='textscan' directory='/Users/ravleensingh/Documents/Capstone/DVA_Capstone/SuperStore_Analysis/tableau_analysis/data/processed' filename='superstore_tableau_ready_dataset.csv' password='' server='' />
           </named-connection>
         </named-connections>
         <relation connection='textscan.1wn0gnp03nnq3v18fp95216mztqy' name='superstore_tableau_ready_dataset.csv' table='[superstore_tableau_ready_dataset#csv]' type='table'>

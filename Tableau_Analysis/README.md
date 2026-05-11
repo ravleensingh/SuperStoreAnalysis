@@ -5,7 +5,7 @@ This folder contains the reproducible Python-to-Tableau workflow used to extend 
 ## Related Project Assets
 
 - Main project summary: [../README.md](../README.md)
-- Tableau Public dashboard: [Open Tableau Public](https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17777857884460/Overview?publish=yes)
+- Tableau Public dashboard: [Open Tableau Public](https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17785071275660/Overview)
 - Cross-platform dashboard links: [tableau/dashboard_links.md](./tableau/dashboard_links.md)
 - Written report: [reports/project_report.md](./reports/project_report.md)
 - Data dictionary: [docs/data_dictionary.md](./docs/data_dictionary.md)

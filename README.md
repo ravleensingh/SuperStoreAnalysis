@@ -7,7 +7,7 @@ This project analyzes the U.S. SuperStore retail dataset across Google Sheets, L
 - Kaggle Dataset: [Superstore Dataset - Kaggle](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final)
 - Google Sheets Workbook: [Google Sheets - Cleaning, Pivot Tables, and Dashboard](https://docs.google.com/spreadsheets/d/1uYMA31gywDBovLxOGKkN01vJsgJn0UiOrBL0BGHEHfw/edit?usp=sharing)
 - Looker Studio Dashboard: [Looker Studio - Interactive Dashboard](https://datastudio.google.com/reporting/a8f98465-e7fb-4850-a190-e4742323a383)
-- Tableau Public Dashboard: [Tableau Public - Interactive Dashboard](https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17777857884460/Overview?publish=yes)
+- Tableau Public Dashboard: [Tableau Public - Interactive Dashboard](https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17785071275660/Overview)
 
 ## Project Snapshot
 
@@ -30,7 +30,7 @@ This project analyzes the U.S. SuperStore retail dataset across Google Sheets, L
 |---|---|---|---|
 | Google Sheets | Cleaning, feature engineering, pivot tables, and summary dashboard | [Open workbook](https://docs.google.com/spreadsheets/d/1uYMA31gywDBovLxOGKkN01vJsgJn0UiOrBL0BGHEHfw/edit?usp=sharing) | [dashboard/googlesheets_Dashboard.pdf](./dashboard/googlesheets_Dashboard.pdf) |
 | Looker Studio | Executive interactive dashboard for high-level KPI monitoring | [Open dashboard](https://datastudio.google.com/reporting/a8f98465-e7fb-4850-a190-e4742323a383) | [dashboard/lookerstudio_Dashboard.pdf](./dashboard/lookerstudio_Dashboard.pdf) |
-| Tableau Public | Six-page analytical story with drill-down views and risk analysis | [Open dashboard](https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17777857884460/Overview?publish=yes) | [tableau_analysis/tableau/dashboard_links.md](./tableau_analysis/tableau/dashboard_links.md) |
+| Tableau Public | Six-page analytical story with drill-down views and risk analysis | [Open dashboard](https://public.tableau.com/app/profile/ravleen.singh4050/viz/Book1_17785071275660/Overview) | [tableau_analysis/tableau/dashboard_links.md](./tableau_analysis/tableau/dashboard_links.md) |
 
 ## Validated KPI Baseline
 
